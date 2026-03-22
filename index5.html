@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PharmaAssist | Behavioral Engine</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            width: 460px;
+            margin: auto;
+            box-shadow: 0px 0px 25px rgba(0,0,0,0.6);
+        }
+
+        button {
+            padding: 10px 18px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #3b82f6;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        .small {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .glitch {
+            color: #f87171;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 180px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="content" class="card">
+    <h2>Secure Login</h2>
+    <p class="small">PharmaAssist Behavioral Engine v6.1</p>
+    <button onclick="login()">Continue</button>
+</div>
+
+<script>
+
+let userName = "Gyanchand";
+
+function goFullScreen() {
+    let elem = document.documentElement;
+    if (elem.requestFullscreen) elem.requestFullscreen();
+}
+
+function login() {
+    goFullScreen();
+    document.getElementById("content").innerHTML = `
+        <h2>Welcome, ${userName}</h2>
+        <p class="small">Pulling data you didn’t know existed...</p>
+    `;
+    setTimeout(startSystem, 2000);
+}
+
+function typeText(text, nextPage) {
+    let i = 0;
+    document.getElementById("content").innerHTML = `<p id="typing"></p>`;
+    let p = document.getElementById("typing");
+
+    function typing() {
+        if (i < text.length) {
+            p.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, 25);
+        } else {
+            document.getElementById("content").innerHTML += `
+                <br><button onclick="${nextPage}()">Return</button>
+            `;
+        }
+    }
+    typing();
+}
+
+// START
+function startSystem() {
+    document.getElementById("content").innerHTML = `
+        <h2>Behavioral Analysis</h2>
+        <p class="small">User locked: ${userName}</p>
+        <button onclick="start()">Start</button>
+    `;
+}
+
+// STEP 1
+function start() {
+    document.getElementById("content").innerHTML = `
+        <h2>Communication Pattern Analysis</h2>
+        <p class="small">You may explore. We already know the result.</p>
+
+        <button onclick="stickers()">Sticker Specialist</button>
+        <button onclick="calls()">Avoids Calls</button>
+        <button onclick="sleep()">Sleep Mode</button>
+        <br>
+        <button onclick="next()">Continue</button>
+    `;
+}
+
+// ANALYSIS
+function stickers() {
+    typeText(
+        "Observation: Stickers used as full sentences.\nTranslation effort shifted to receiver.\nEfficiency: impressive laziness.",
+        "start"
+    );
+}
+
+function calls() {
+    typeText(
+        "Call logs analyzed.\nInteraction level: theoretical.\nAvoidance skill: borderline professional.",
+        "start"
+    );
+}
+
+function sleep() {
+    typeText(
+        "Sleep cycle detected.\nFlexible. Adjustable. Prioritized.\nAdvice to others: 'sojaa jaa'.\nSelf-application: unmatched.",
+        "start"
+    );
+}
+
+// NEXT
+function next() {
+    document.getElementById("content").innerHTML = `
+        <h2>Decision History</h2>
+        <p class="small">Let’s revisit your greatest hits.</p>
+
+        <button onclick="vidushi()">Vidushi</button>
+        <button onclick="komal()">Komal</button>
+        <button onclick="prefer()">Skip</button>
+    `;
+}
+
+// CASES
+function vidushi() {
+    typeText(
+        "Case Vidushi:\nConsistency noted.\nOutcome: promoted to ‘good friend’.\nGrowth: emotionally stable, romantically static.",
+        "next"
+    );
+}
+
+function komal() {
+    typeText(
+        "Case Komal:\nEffort high.\nReturn… minimal.\nConclusion: hope levels exceeding data.",
+        "next"
+    );
+}
+
+// DOB
+function prefer() {
+    document.getElementById("content").innerHTML = `
+        <h2>Identity Verification</h2>
+        <input id="dob" placeholder="19 Oct">
+        <br><br>
+        <button onclick="checkDOB()">Verify</button>
+        <button onclick="next()">Back</button>
+    `;
+}
+
+function checkDOB() {
+    let input = document.getElementById("dob").value.toLowerCase();
+
+    if (input.includes("19") && input.includes("oct")) {
+        final();
+    } else {
+        typeText(
+            "Verification failed.\nEven your birthday escaped your memory.\nImpressive consistency.",
+            "prefer"
+        );
+    }
+}
+
+// FINAL REPORT
+function final() {
+    let score = Math.floor(Math.random() * 20) + 65;
+
+    document.getElementById("content").innerHTML = `
+        <h2>Final Report</h2>
+
+        <p class="small">
+        Name: Gyanchand<br>
+        Intelligence: High (confirmed)<br>
+        Nature: Actually decent human<br><br>
+
+        Communication: Sticker-heavy<br>
+        Calls: avoided like responsibility<br>
+        Sleep: taken very seriously<br><br>
+
+        Decision Accuracy: ${score}%<br><br>
+
+        Summary:<br>
+        Smart.<br>
+        Capable.<br>
+        Slightly too relaxed for his own good.<br>
+        Still functioning somehow.
+        </p>
+
+        <img src="your-friend.jpg">
+
+        <br><br>
+        <button onclick="sweet()">Next</button>
+    `;
+}
+
+// SWEET PAGE
+function sweet() {
+    document.getElementById("content").innerHTML = `
+        <h2>🍮 Gulab Jamun with Rasgulla lover 🍮</h2>
+        <p class="small">Some combinations just shouldn’t exist. Yet here we are.</p>
+
+        <button onclick="ending()">Next</button>
+    `;
+}
+
+// FINAL DRAMATIC ENDING
+function ending() {
+    document.getElementById("content").innerHTML = `
+        <h2>🚩 Jai Shree Ram 🚩</h2>
+        <p id="twist" class="glitch"></p>
+    `;
+
+    let text = "Vikas... I hate you. bhaad mein jaa.";
+    let i = 0;
+
+    setTimeout(() => {
+        function type() {
+            if (i < text.length) {
+                document.getElementById("twist").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 50);
+            }
+        }
+        type();
+    }, 2000);
+}
+
+</script>
+
+</body>
+</html>
